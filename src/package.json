@@ -1,0 +1,16 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "description": "Sample GitHub Actions for cache node",
+  "main": "index.ts",
+  "author": "Yuta Yamamori",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.335.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.115",
+    "@types/node": "^20.2.1",
+    "typescript": "^5.0.4"
+  }
+}
