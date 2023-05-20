@@ -1,0 +1,33 @@
+name: Main Push Actions
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  node:
+    name: Cache Node Modules
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Cache Node
+        id: sample-cache
+        uses: actions/cache@v3
+        with:
+          path: ./src
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - if: ${{ steps.sample-cache.outputs.cache-hit != 'true' }}
+        name: Yarn Install
+        run: cd src; yarn install
+
+      - name: TypeScript Compile
+        run: cd src; node_modules/.bin/tsc index.ts
