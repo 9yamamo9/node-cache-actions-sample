@@ -32,3 +32,6 @@ jobs:
 
       - name: TypeScript Compile
         run: cd src; node_modules/.bin/tsc index.ts
+
+      - name: Check Compiled TypeScript
+        run: cd src; ls -al
